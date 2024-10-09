@@ -1,0 +1,99 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212; /* Fond sombre */
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.button {
+    width: 300px; 
+    height: 300px; 
+    font-size: 2.5em; 
+    color: white;
+    background: linear-gradient(180deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0.4)); 
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(0, 0, 255, 0.8), 0 0 40px rgba(0, 0, 255, 0.5);
+    position: relative;
+}
+
+.button.active {
+    animation: blink 0.8s infinite, shake 0.8s, expand 0.5s forwards; /* Ajout de l'animation d'expansion */
+    background: linear-gradient(180deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0.4)); 
+    transform: scale(1.1);
+}
+
+/* Animation d'expansion */
+@keyframes expand {
+    0% {
+        width: 300px;
+        height: 300px;
+    }
+    100% {
+        width: 100vw; 
+        height: 100vh; 
+        border-radius: 0; /* Supprime les coins arrondis */
+    }
+}
+
+
+.button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 255, 0.3);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.button:hover {
+    transform: scale(1.05); /* Légère augmentation à l'hover */
+    box-shadow: 0 0 30px rgba(0, 0, 255, 1), 0 0 50px rgba(0, 0, 255, 0.5); /* Ombre plus forte */
+}
+
+.button.active {
+    animation: blink 0.8s infinite, shake 0.8s; /* Animation de clignotement et de secousse plus longues */
+    background: linear-gradient(180deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0.4)); /* Couleur rouge lors de l'activation */
+    transform: scale(1.1); /* Agrandissement lors de l'activation */
+}
+
+@keyframes blink {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 1), 0 0 40px rgba(255, 0, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(255, 0, 0, 1), 0 0 80px rgba(255, 0, 0, 0.5);
+    }
+}
+
+@keyframes shake {
+    0% { transform: translate(0); }
+    20% { transform: translate(-15px, 10px); }
+    40% { transform: translate(15px, -10px); }
+    60% { transform: translate(-10px, -10px); }
+    80% { transform: translate(10px, 10px); }
+    100% { transform: translate(0); }
+}
+
+.button.active:before {
+    transform: scale(1.5);
+    opacity: 0; /* Fait disparaître l'effet de verre */
+}
+
+
